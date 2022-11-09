@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View } from 'react-native';
-import { AwesomeLibraryView } from 'react-native-awesome-library';
+import { AwesomeLibraryView } from 'react-native-awesome-library-lu';
 
 export default function App() {
   return (
