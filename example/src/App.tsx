@@ -1,12 +1,13 @@
 import * as React from 'react';
 
 import { StyleSheet, View } from 'react-native';
-import { AwesomeLibraryView } from 'react-native-awesome-library-lu';
+import { AwesomeLibraryView, Component} from 'react-native-awesome-library-lu';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <AwesomeLibraryView color="#32a852" style={styles.box} />
+      <Component/>
     </View>
   );
 }
