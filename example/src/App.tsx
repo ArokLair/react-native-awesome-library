@@ -1,25 +1,18 @@
 import * as React from 'react';
-
-import { StyleSheet, View } from 'react-native';
-import { AwesomeLibraryView } from 'react-native-awesome-library-lu';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import PeliculasComponent from './component/PeliculasComponent';
+import HomeComponent from './component/HomeComponent';
+import StarWar from './component/StarWar';
 export default function App() {
+  const Stack = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <AwesomeLibraryView color="#32a852" style={styles.box} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeComponent} />
+        <Stack.Screen name="Peliculas" component={PeliculasComponent} />
+        <Stack.Screen name="Personajes" component={StarWar} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
