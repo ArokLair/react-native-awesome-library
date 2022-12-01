@@ -1,20 +1,20 @@
 import React from 'react';
 import { StyleSheet, Button, View, Text, Alert } from 'react-native';
 
-
-export function Component(){
-    return ( 
+export function Component() {
+  return (
     <View>
       <Text style={styles.title}>
-        The title and onPress handler are required. It is recommended to set accessibilityLabel to help make your app usable by everyone.
+        The title and onPress handler are required. It is recommended to set
+        accessibilityLabel to help make your app usable by everyone.
       </Text>
       <Button
         title="Press me"
         onPress={() => Alert.alert('Simple Button pressed')}
       />
     </View>
-    )
-};
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
