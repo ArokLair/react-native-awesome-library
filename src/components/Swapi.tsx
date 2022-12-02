@@ -6,7 +6,6 @@ export interface Props {
   color: string;
   isbutton: boolean;
   image: number;
-  limit: number;
   isImage: boolean;
   backgroundColor: string;
   idColor: 'bgprimary' | 'bgsecondary';
@@ -18,7 +17,6 @@ export function Swapi({
   image,
   isImage,
   backgroundColor = 'blue',
-  limit = 7,
   idColor = 'bgprimary',
 }: Props) {
   const [estado, setEstado] = useState({
@@ -26,7 +24,7 @@ export function Swapi({
     birth_year: '03/03/2000',
   });
   const [contador, setContador] = useState(1);
-  const [imagen, setImagen] = useState([
+  const [imagen] = useState([
     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Star_wars2.svg/1200px-Star_wars2.svg.png',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png',
@@ -35,22 +33,16 @@ export function Swapi({
     bgprimary: { id: 1, backgroundColor: 'skyblue', color: 'dark' },
     bgsecondary: { id: 2, backgroundColor: 'red', color: 'white' },
   };
-
-  const [bg, setBg] = useState(styleBg);
+  const [bg] = useState(styleBg);
 
   useEffect(() => {
-    if (contador <= limit) {
-      axios
-        .get('https://swapi.dev/api/people/' + contador)
-        .then((response) => response.data)
-        .then((data) => setEstado(data));
-    }
+    axios
+      .get('https://swapi.dev/api/people/' + contador)
+      .then((response) => response.data)
+      .then((data) => setEstado(data));
   }, [contador]);
 
   const click = () => {
-    if (contador < limit) {
-      setContador(contador);
-    }
     setContador(contador + 1);
   };
   return (
