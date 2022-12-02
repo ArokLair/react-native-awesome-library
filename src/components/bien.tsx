@@ -3,8 +3,6 @@
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
 
-
-
 // export function Bien() {
 
 //     const [bien, setBien] = useState({

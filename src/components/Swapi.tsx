@@ -1,17 +1,26 @@
 import React from 'react';
-import { StyleSheet, Button, View, Text, Image,ViewStyle } from 'react-native';
+import { StyleSheet, Button, View, Text, Image } from 'react-native';
 import axios from 'axios';
-import { useEffect, useState } from 'react';export interface Props {
+import { useEffect, useState } from 'react';
+export interface Props {
   color: string;
   isbutton: boolean;
-  image:number,
-  limit:number
+  image: number;
+  limit: number;
   isImage: boolean;
-  backgroundColor: string,
-  idColor: "bgprimary"|"bgsecondary",
+  backgroundColor: string;
+  idColor: 'bgprimary' | 'bgsecondary';
 }
 
-export function Swapi({ color, isbutton,image,isImage,backgroundColor="blue",limit=7,idColor="bgprimary"}: Props) {
+export function Swapi({
+  color,
+  isbutton,
+  image,
+  isImage,
+  backgroundColor = 'blue',
+  limit = 7,
+  idColor = 'bgprimary',
+}: Props) {
   const [estado, setEstado] = useState({
     name: 'Hola mundo',
     birth_year: '03/03/2000',
@@ -19,55 +28,59 @@ export function Swapi({ color, isbutton,image,isImage,backgroundColor="blue",lim
   const [contador, setContador] = useState(1);
   const [imagen, setImagen] = useState([
     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Star_wars2.svg/1200px-Star_wars2.svg.png',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png'
-    ,'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png'
-               
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png',
   ]);
-  const styleBg={
-    "bgprimary":{id:1,backgroundColor:"skyblue",color:"dark"},
-    "bgsecondary":{id:2,backgroundColor:"red",color:"white"},
-    
-  }
+  const styleBg = {
+    bgprimary: { id: 1, backgroundColor: 'skyblue', color: 'dark' },
+    bgsecondary: { id: 2, backgroundColor: 'red', color: 'white' },
+  };
 
-  const [bg,setBg]=useState(styleBg)
+  const [bg, setBg] = useState(styleBg);
 
   useEffect(() => {
-if (contador<=limit){
-    axios
-      .get('https://swapi.dev/api/people/' + contador)
-      .then((response) => response.data)
-      .then((data) => setEstado(data));
-}}, [contador])
-  
+    if (contador <= limit) {
+      axios
+        .get('https://swapi.dev/api/people/' + contador)
+        .then((response) => response.data)
+        .then((data) => setEstado(data));
+    }
+  }, [contador]);
 
-  const click = () =>{
-    if (contador<limit){
-    setContador(contador);
+  const click = () => {
+    if (contador < limit) {
+      setContador(contador);
     }
     setContador(contador + 1);
   };
   return (
-    <View style={{...styles.container,backgroundColor:backgroundColor}}>
-      <View style={{...styles.box,backgroundColor:bg[idColor].backgroundColor}}>
-        
-        {isImage?
+    <View style={{ ...styles.container, backgroundColor: backgroundColor }}>
+      <View
+        style={{ ...styles.box, backgroundColor: bg[idColor].backgroundColor }}
+      >
+        {isImage ? (
           <Image
-          style={styles.img}
-          source={{
-            uri: imagen[image],
-          }}
-        />:null}
-        <Text style={{color:bg[idColor].color}}>Listado de Actores de Star Wars</Text>
-        <Text style={{color:bg[idColor].color}}>Personaje: {contador}</Text>
-        <Text style={{color:bg[idColor].color}} >{estado?.name}</Text>
-        <Text style={{color:bg[idColor].color}}>{estado?.birth_year}</Text>
-        {isbutton? <Button title="cambiar" color={color} onPress={click} />: null}
+            style={styles.img}
+            source={{
+              uri: imagen[image],
+            }}
+          />
+        ) : null}
+        <Text style={{ color: bg[idColor].color }}>
+          Listado de Actores de Star Wars
+        </Text>
+        <Text style={{ color: bg[idColor].color }}>Personaje: {contador}</Text>
+        <Text style={{ color: bg[idColor].color }}>{estado?.name}</Text>
+        <Text style={{ color: bg[idColor].color }}>{estado?.birth_year}</Text>
+        {isbutton ? (
+          <Button title="cambiar" color={color} onPress={click} />
+        ) : null}
       </View>
     </View>
   );
 }
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
   img: {
     width: '100%',
     height: 80,
@@ -79,7 +92,7 @@ const styles=StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  
+
   titulo: {
     fontSize: 20,
     textAlign: 'center',

@@ -1,4 +1,3 @@
-
 export {
   AwesomeLibraryView,
   Props as AwesomeLibraryProps,
