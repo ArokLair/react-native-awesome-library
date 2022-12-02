@@ -7838,6 +7838,11 @@ react-native-size-matters@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-native-size-matters/-/react-native-size-matters-0.4.0.tgz#01bfd0d59454318f4e0b13fe9c1eb0523d70f2e0"
   integrity sha512-8/C0htHrFWeUm9N8JegmadovUfgTWkGBkDPZ1N3YkXtDWb+98Ya2gThiKcu445r8c7YhcrBfnHz/mYsXIusaOQ==
 
+react-native-table-component@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-table-component/-/react-native-table-component-1.2.2.tgz#1c9bdcd8f1fd7edf10d1e93ebc3b7877ecd74def"
+  integrity sha512-7bbsi5431iWcjj3toASh8lFHGi6AG/+MTd4M7GuksXKxx/CFs/Qwv1Ys7D2wgyuYKe3hxWNfSVrteFj0tOYXYw==
+
 react-native@0.70.5:
   version "0.70.5"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.70.5.tgz#f60540b21d338891086e0a834e331c124dd1f55c"

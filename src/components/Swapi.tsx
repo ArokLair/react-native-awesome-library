@@ -1,44 +1,73 @@
 import React from 'react';
-import { StyleSheet, Button, View, Text, Image } from 'react-native';
+import { StyleSheet, Button, View, Text, Image,ViewStyle } from 'react-native';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-export function Swapi() {
+import { useEffect, useState } from 'react';export interface Props {
+  color: string;
+  isbutton: boolean;
+  image:number,
+  limit:number
+  isImage: boolean;
+  backgroundColor: string,
+  idColor: "bgprimary"|"bgsecondary",
+}
+
+export function Swapi({ color, isbutton,image,isImage,backgroundColor="blue",limit=7,idColor="bgprimary"}: Props) {
   const [estado, setEstado] = useState({
     name: 'Hola mundo',
     birth_year: '03/03/2000',
   });
   const [contador, setContador] = useState(1);
+  const [imagen, setImagen] = useState([
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Star_wars2.svg/1200px-Star_wars2.svg.png',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png'
+    ,'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png'
+               
+  ]);
+  const styleBg={
+    "bgprimary":{id:1,backgroundColor:"skyblue",color:"dark"},
+    "bgsecondary":{id:2,backgroundColor:"red",color:"white"},
+    
+  }
+
+  const [bg,setBg]=useState(styleBg)
 
   useEffect(() => {
+if (contador<=limit){
     axios
       .get('https://swapi.dev/api/people/' + contador)
       .then((response) => response.data)
       .then((data) => setEstado(data));
-  }, [contador]);
+}}, [contador])
+  
 
-  const click = () => {
+  const click = () =>{
+    if (contador<limit){
+    setContador(contador);
+    }
     setContador(contador + 1);
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.box}>
-        <Image
+    <View style={{...styles.container,backgroundColor:backgroundColor}}>
+      <View style={{...styles.box,backgroundColor:bg[idColor].backgroundColor}}>
+        
+        {isImage?
+          <Image
           style={styles.img}
           source={{
-            uri: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5298bac0-b8bf-4c80-af67-725c1272dbb0/dcbrky3-d4685ae4-a280-40ab-a56f-8c93c5eea8d9.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzUyOThiYWMwLWI4YmYtNGM4MC1hZjY3LTcyNWMxMjcyZGJiMFwvZGNicmt5My1kNDY4NWFlNC1hMjgwLTQwYWItYTU2Zi04YzkzYzVlZWE4ZDkuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.5A7ZNgOZNnctFrT9QNhuYLnqAv93XJ5Q2Uxp0Jz55C4',
+            uri: imagen[image],
           }}
-        />
-        <Text style={styles.titulo}>Listado de Actores de Star Wars</Text>
-        <Text>Personaje: {contador}</Text>
-        <Text>{estado?.name}</Text>
-        <Text>{estado?.birth_year}</Text>
-        <Button title="cambiar" color={'blue'} onPress={click} />
+        />:null}
+        <Text style={{color:bg[idColor].color}}>Listado de Actores de Star Wars</Text>
+        <Text style={{color:bg[idColor].color}}>Personaje: {contador}</Text>
+        <Text style={{color:bg[idColor].color}} >{estado?.name}</Text>
+        <Text style={{color:bg[idColor].color}}>{estado?.birth_year}</Text>
+        {isbutton? <Button title="cambiar" color={color} onPress={click} />: null}
       </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const styles=StyleSheet.create({
   img: {
     width: '100%',
     height: 80,
@@ -47,10 +76,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '20%',
     flex: 1,
-    backgroundColor: 'skyblue',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  
   titulo: {
     fontSize: 20,
     textAlign: 'center',
@@ -64,7 +93,6 @@ const styles = StyleSheet.create({
   box: {
     width: '90%',
     height: 260,
-    backgroundColor: '#efefef',
     padding: 10,
   },
 });
