@@ -20,8 +20,6 @@ export function Swapi({
   idColor = 'bgprimary',
 }: Props) {
   const [estado, setEstado] = useState({
-    name: 'Hola mundo',
-    birth_year: '03/03/2000',
   });
   const [contador, setContador] = useState(1);
   const [imagen] = useState([
@@ -36,12 +34,10 @@ export function Swapi({
   const [bg] = useState(styleBg);
 
   useEffect(() => {
-    axios
-      .get('https://swapi.dev/api/people/' + contador)
+    axios.get('https://swapi.py4e.com/api/planets/' + contador)
       .then((response) => response.data)
       .then((data) => setEstado(data));
   }, [contador]);
-
   const click = () => {
     setContador(contador + 1);
   };

@@ -5,21 +5,23 @@ import {
   // AwesomeLibraryView,
   // Component,
   // Bien,
-  Swapi,
+  StarWarHome,
 } from 'react-native-awesome-library-lu';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Swapi
+     <StarWarHome isButton={true} numberResult={4} find="Empire" />
+     {/*<Swapi
         color="blue"
         isbutton={true}
         isImage={true}
         image={1}
         backgroundColor="blue"
-        idColor="bgsecondary"
-      />
+        idColor="bgsecondary"//d
+  />*/}
     </View>
+    
   );
 }
 
