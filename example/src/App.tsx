@@ -4,23 +4,54 @@ import { StyleSheet, View } from 'react-native';
 import {
   // AwesomeLibraryView,
   // Component,
-  // Bien,
   StarWarHome,
+  LinkStack,
+  Swapi,
+  PeliculasView,
+  
+  
 } from 'react-native-awesome-library-lu';
 
+
 export default function App() {
+const propiedad = [
+  {
+    name: "StarWarHome",
+    componente: StarWarHome,
+    prop: {
+      numberResult: 3,
+      find:"New ",
+    }
+  },
+  {
+  name: "Personajes",
+  componente: Swapi,
+  prop: {
+    isbutton: true,
+    image:1,
+    isImage: true,
+  },
+  },
+  {
+  name: "Peliculas",
+  componente: PeliculasView,
+}
+  
+  
+]
   return (
-    <View style={styles.container}>
-     <StarWarHome isButton={true} numberResult={4} find="Empire" />
-     {/*<Swapi
-        color="blue"
-        isbutton={true}
-        isImage={true}
-        image={1}
-        backgroundColor="blue"
-        idColor="bgsecondary"//d
-  />*/}
-    </View>
+    <><LinkStack prop={propiedad}/> 
+
+    
+      {/*<Swapi
+       color="blue"
+       isbutton={true}
+       isImage={true}
+       image={1}
+       backgroundColor="blue"
+       idColor="bgsecondary"//d
+ />*/}
+</>
     
   );
 }

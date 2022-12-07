@@ -2,13 +2,16 @@ import * as React from 'react';
 import axios from 'axios';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { Card, Button } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
 interface Props {
   numberResult: number;
   isButton: boolean;
   find: string | null;
+  navigation:any;
 }
-export function StarWarHome({ numberResult = 3, isButton = true, find = null }: Props) {
-  const [peliculas, setPeliculas] = React.useState();
+export function StarWarHome({ numberResult = 3, isButton = true, find = null}: Props) {
+  const navigation = useNavigation();
+  const [peliculas, setPeliculas] = React.useState([]);
   const filterResult=(dato:Object[])=>{
     const datas = dato
     const result=[]
@@ -23,7 +26,6 @@ export function StarWarHome({ numberResult = 3, isButton = true, find = null }: 
       axios.get('https://swapi.py4e.com/api/films').then((response) => {
         const result=filterResult(response.data.results)
         setPeliculas(result);
-        console.log(response);
       }).catch((error) => {
         console.log(error);
       });
@@ -43,17 +45,19 @@ export function StarWarHome({ numberResult = 3, isButton = true, find = null }: 
       {peliculas &&
         peliculas.map((text) => (
           <View>
-            <Card style={styles.container2}>
+            <Card >
               <Card.Title>{text.title}</Card.Title>
               <Text>Director: {text.director}</Text>
               <Text>Fecha de Lanzamiento: {text.release_date}</Text>
-              {isButton ? <Button>
+              {isButton ? <Button  onPress={() =>
+                  navigation.navigate('Peliculas', { url: text.url })
+                }>
                 Mas Informacion
               </Button> : null}
             </Card>
           </View>
         ))}
-      <Button>
+      <Button onPress={()=>navigation.navigate('Personajes')}>
         Mira todos los actores de Star War
       </Button>
     </ScrollView>

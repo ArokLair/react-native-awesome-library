@@ -14,7 +14,7 @@ export interface Props {
 export function Swapi({
   color,
   isbutton,
-  image,
+  image=1,
   isImage,
   backgroundColor = 'blue',
   idColor = 'bgprimary',

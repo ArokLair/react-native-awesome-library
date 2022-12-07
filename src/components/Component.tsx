@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Button, View, Text, Alert } from 'react-native';
 
 export function Component() {
+  console.log("aqui")
   return (
     <View>
       <Text style={styles.title}>
