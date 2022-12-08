@@ -8,41 +8,43 @@ import {
   LinkStack,
   Swapi,
   PeliculasView,
-  
-  
+
+
 } from 'react-native-awesome-library-lu';
 
 
 export default function App() {
-const propiedad = [
-  {
-    name: "StarWarHome",
-    componente: StarWarHome,
-    prop: {
-      numberResult: 3,
-      find:"New ",
+  const propiedad = [
+    {
+      name: "StarWarHome",
+      componente: StarWarHome,
+      prop: {
+        numberResult: 6,
+        keys: "darkColors",
+      }
+    },
+    {
+      name: "Personajes",
+      componente: Swapi,
+      prop: {
+        isbutton: true,
+        image: 0,
+        isImage: true,
+      },
+    },
+    {
+      name: "Peliculas",
+      componente: PeliculasView,
+      prop: {
+        
+      }
     }
-  },
-  {
-  name: "Personajes",
-  componente: Swapi,
-  prop: {
-    isbutton: true,
-    image:1,
-    isImage: true,
-  },
-  },
-  {
-  name: "Peliculas",
-  componente: PeliculasView,
-}
-  
-  
-]
-  return (
-    <><LinkStack prop={propiedad}/> 
 
-    
+  ]
+  return (
+    <><LinkStack prop={propiedad} />
+
+
       {/*<Swapi
        color="blue"
        isbutton={true}
@@ -51,8 +53,8 @@ const propiedad = [
        backgroundColor="blue"
        idColor="bgsecondary"//d
  />*/}
-</>
-    
+    </>
+
   );
 }
 

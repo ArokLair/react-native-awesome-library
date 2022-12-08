@@ -8,8 +8,9 @@ interface Props {
   isButton: boolean;
   find: string | null;
   navigation:any;
+  keys:"lightColors"|"darkColors"
 }
-export function StarWarHome({ numberResult = 3, isButton = true, find = null}: Props) {
+export function StarWarHome({ keys="darkColors", numberResult = 3, isButton = true, find = null}: Props) {
   const navigation = useNavigation();
   const [peliculas, setPeliculas] = React.useState([]);
   const filterResult=(dato:Object[])=>{
@@ -47,10 +48,10 @@ export function StarWarHome({ numberResult = 3, isButton = true, find = null}: P
           <View>
             <Card >
               <Card.Title>{text.title}</Card.Title>
-              <Text>Director: {text.director}</Text>
+              <Text style={styles.texto}>Director: {text.director}</Text>
               <Text>Fecha de Lanzamiento: {text.release_date}</Text>
               {isButton ? <Button  onPress={() =>
-                  navigation.navigate('Peliculas', { url: text.url })
+                  navigation.navigate('Peliculas', { url: text.url,key:keys })
                 }>
                 Mas Informacion
               </Button> : null}
@@ -80,4 +81,10 @@ const styles = StyleSheet.create({
     height: 60,
     marginVertical: 20,
   },
+  texto:{
+    color: 'black',
+    fontSize: 10,
+    fontWeight: 'bold',
+
+  }
 });
