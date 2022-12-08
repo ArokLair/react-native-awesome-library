@@ -13,7 +13,7 @@ export function LinkStack({prop}:Props) {
   const Stack: any = createNativeStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="StarWarHome">
+      <Stack.Navigator initialRouteName="Bien">
         {prop && prop.map((propiedad) => (
         <Stack.Screen name={propiedad.name}>
           {() => <propiedad.componente {...propiedad.prop}/>}

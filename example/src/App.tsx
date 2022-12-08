@@ -8,6 +8,7 @@ import {
   LinkStack,
   Swapi,
   PeliculasView,
+  Bien
 
 
 } from 'react-native-awesome-library-lu';
@@ -21,6 +22,13 @@ export default function App() {
       prop: {
         numberResult: 6,
         keys: "darkColors",
+      }
+    },
+    {
+      name: "Bien",
+      componente: Bien,
+      prop: {
+        numResult: 4,
       }
     },
     {
