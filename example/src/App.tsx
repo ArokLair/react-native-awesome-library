@@ -4,8 +4,8 @@ import { StyleSheet, View } from 'react-native';
 import {
   // AwesomeLibraryView,
   // Component,
-   Bien,
-  Swapi,
+  Bien,
+  //Swapi,
 } from 'react-native-awesome-library-lu';
 
 export default function App() {
@@ -19,7 +19,7 @@ export default function App() {
         backgroundColor="blue"
         idColor="bgsecondary"
       /> */}
-     <Bien backgroundColor="yellow" numResult={4} isForm={false}/>
+      <Bien backgroundColor="yellow" numResult={4} isForm={false} />
     </View>
   );
 }

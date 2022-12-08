@@ -1,73 +1,59 @@
-import React from 'react'
-import { View, Text, TextInput, StyleSheet,Alert, Button } from 'react-native';
+import React from 'react';
+import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
 import { useBien } from '../hooks/useBien';
 import { useState } from 'react';
 
-interface  IBien {
-    id?: Number;
-    cod: Number;
-    cod_ant: Number;
-    tipo: String;
-    nombre: String;
-    serie: String;
-    marca:String;
-    monto: Number;
-  }
-
 export const AgregarBien = () => {
+  const { agregarBien } = useBien();
 
-    const {agregarBien }=useBien();
-    const [bienes, setBienes] = useState<IBien[]>();
-  
-    const [biene, setBiene] = useState({
-      id: 0,
-      cod: 0,
-      cod_ant: 0,
-      tipo: '',
-      nombre: 'hghg',
-      serie: '',
-      marca: 'hgf',
-      monto: 0,
-    });
-  
-    const handleSubmit = async() => {
-      const result = await agregarBien(biene);
-      if (result) {
-        Alert.alert("bien agregado correctamente");
-      }
-      else{
-        Alert.alert("no se ha agregado el bien");
-      }
+  const [biene, setBiene] = useState({
+    id: 0,
+    cod: 0,
+    cod_ant: 0,
+    tipo: '',
+    nombre: 'hghg',
+    serie: '',
+    marca: 'hgf',
+    monto: 0,
+  });
+
+  const handleSubmit = async () => {
+    const result = await agregarBien(biene);
+    if (result) {
+      Alert.alert('bien agregado correctamente');
+    } else {
+      Alert.alert('no se ha agregado el bien');
     }
-    const handleChangeInputs = (value: string, property: string) => {
-      switch (property) {
-        case 'cod':
-          setBiene({ ...biene, cod: Number(value) });
-          break;
-        case 'cod_ant':
-          setBiene({ ...biene, cod_ant: Number(value) });
-          break;
-        case 'tipo':
-          setBiene({ ...biene, tipo: value });
-          break;
-        case 'nombre':
-          setBiene({ ...biene, nombre: value });
-          break;
-        case 'serie':
-          setBiene({ ...biene, serie: value });
-          break;
-        case 'marca':
-          setBiene({ ...biene, marca: value });
-          break;
-        case 'monto':
-          setBiene({ ...biene, monto: Number(value) });
-          break;
-      }
-    };
+  };
+  const handleChangeInputs = (value: string, property: string) => {
+    switch (property) {
+      case 'cod':
+        setBiene({ ...biene, cod: Number(value) });
+        break;
+      case 'cod_ant':
+        setBiene({ ...biene, cod_ant: Number(value) });
+        break;
+      case 'tipo':
+        setBiene({ ...biene, tipo: value });
+        break;
+      case 'nombre':
+        setBiene({ ...biene, nombre: value });
+        break;
+      case 'serie':
+        setBiene({ ...biene, serie: value });
+        break;
+      case 'marca':
+        setBiene({ ...biene, marca: value });
+        break;
+      case 'monto':
+        setBiene({ ...biene, monto: Number(value) });
+        break;
+    }
+  };
 
   return (
-    <View >
-         <Text>Codigo: </Text>
+    <View>
+      <Text>Codigo: </Text>
       <TextInput
         onChangeText={(texto) => {
           handleChangeInputs(texto, 'cod');
@@ -125,20 +111,15 @@ export const AgregarBien = () => {
         value={biene.monto.toString()}
         style={styles.input}
       />
-       <Button
-        title="Guardar datos"
-        onPress={handleSubmit}
-      />
+      <Button title="Guardar datos" onPress={handleSubmit} />
     </View>
-    
-  )
-}
+  );
+};
 const styles = StyleSheet.create({
-    input: {
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
-      padding: 10,
-    }
-  });
-  
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
+});

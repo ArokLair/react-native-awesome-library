@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  Button,
-  Alert,
-  ScrollView,
-} from 'react-native';
+import { StyleSheet, Text, Button, Alert, ScrollView } from 'react-native';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useBien } from '../hooks/useBien';
@@ -63,7 +55,10 @@ export function Bien({
     <ScrollView
       style={{ ...styles.container, backgroundColor: backgroundColor }}
     >
-      <Button title={!verList?"Agregar bien":"Ver Listado"} onPress = {handleVisible} />
+      <Button
+        title={!verList ? 'Agregar bien' : 'Ver Listado'}
+        onPress={handleVisible}
+      />
       {verList && <AgregarBien />}
       {!verList && (
         <>
