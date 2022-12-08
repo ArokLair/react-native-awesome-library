@@ -4,21 +4,22 @@ import { StyleSheet, View } from 'react-native';
 import {
   // AwesomeLibraryView,
   // Component,
-  // Bien,
+   Bien,
   Swapi,
 } from 'react-native-awesome-library-lu';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Swapi
+      {/* <Swapi
         color="blue"
         isbutton={true}
         isImage={true}
         image={1}
         backgroundColor="blue"
         idColor="bgsecondary"
-      />
+      /> */}
+     <Bien backgroundColor="yellow" numResult={4} isForm={false}/>
     </View>
   );
 }

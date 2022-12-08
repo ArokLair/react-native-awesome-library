@@ -152,9 +152,15 @@
     ]
   },
   "dependencies": {
+    "@react-navigation/native": "^6.1.0",
     "@rneui/base": "^4.0.0-rc.7",
     "@rneui/themed": "^4.0.0-rc.7",
     "axios": "^1.2.0",
-    "react-native-table-component": "^1.2.2"
+    "bootstrap": "^5.2.3",
+    "formik": "^2.2.9",
+    "react-bootstrap-table": "^4.3.1",
+    "react-native-paper": "^5.0.1",
+    "react-native-table-component": "^1.2.2",
+    "react-table": "^7.8.0"
   }
 }
