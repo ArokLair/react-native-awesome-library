@@ -14,13 +14,12 @@ export interface Props {
 export function Swapi({
   color,
   isbutton,
-  image=1,
+  image = 1,
   isImage,
   backgroundColor = 'blue',
   idColor = 'bgprimary',
 }: Props) {
-  const [estado, setEstado] = useState({
-  });
+  const [estado, setEstado] = useState({});
   const [contador, setContador] = useState(1);
   const [imagen] = useState([
     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Star_wars2.svg/1200px-Star_wars2.svg.png',
@@ -34,7 +33,8 @@ export function Swapi({
   const [bg] = useState(styleBg);
 
   useEffect(() => {
-    axios.get('https://swapi.py4e.com/api/planets/' + contador)
+    axios
+      .get('https://swapi.py4e.com/api/planets/' + contador)
       .then((response) => response.data)
       .then((data) => setEstado(data));
   }, [contador]);

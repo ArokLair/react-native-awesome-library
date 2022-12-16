@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet} from 'react-native';
+
 import {
   // AwesomeLibraryView,
   // Component,
@@ -8,31 +9,30 @@ import {
   LinkStack,
   Swapi,
   PeliculasView,
-  Bien
-
-
+  Bien,
+  Menu,
 } from 'react-native-awesome-library-lu';
-
 
 export default function App() {
   const propiedad = [
     {
-      name: "StarWarHome",
+      name: 'StarWarHome',
       componente: StarWarHome,
       prop: {
         numberResult: 6,
-        keys: "darkColors",
-      }
+        keys: 'darkColors',
+      },
     },
     {
-      name: "Bien",
+      name: 'Bien',
       componente: Bien,
       prop: {
         numResult: 4,
-      }
+        backgroundColor: '#ececec',
+      },
     },
     {
-      name: "Personajes",
+      name: 'Personajes',
       componente: Swapi,
       prop: {
         isbutton: true,
@@ -41,17 +41,19 @@ export default function App() {
       },
     },
     {
-      name: "Peliculas",
+      name: 'Peliculas',
       componente: PeliculasView,
-      prop: {
-        
-      }
-    }
-
-  ]
+      prop: {},
+    },
+    {
+      name: 'Menu',
+      componente: Menu,
+      prop: {},
+    },
+  ];
   return (
-    <><LinkStack prop={propiedad} />
-
+    <>
+      <LinkStack prop={propiedad} />
 
       {/*<Swapi
        color="blue"
@@ -62,19 +64,18 @@ export default function App() {
        idColor="bgsecondary"//d
  />*/}
     </>
-
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+//   box: {
+//     width: 60,
+//     height: 60,
+//     marginVertical: 20,
+//   },
+// });

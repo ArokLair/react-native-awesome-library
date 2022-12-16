@@ -7,37 +7,47 @@ interface Props {
   numberResult: number;
   isButton: boolean;
   find: string | null;
-  navigation:any;
-  keys:"lightColors"|"darkColors"
+  navigation: any;
+  keys: 'lightColors' | 'darkColors';
 }
-export function StarWarHome({ keys="darkColors", numberResult = 3, isButton = true, find = null}: Props) {
+export function StarWarHome({
+  keys = 'darkColors',
+  numberResult = 3,
+  isButton = true,
+  find = null,
+}: Props) {
   const navigation = useNavigation();
   const [peliculas, setPeliculas] = React.useState([]);
-  const filterResult=(dato:Object[])=>{
-    const datas = dato
-    const result=[]
-    numberResult = numberResult > datas.length ? datas.length : numberResult
+  const filterResult = (dato: Object[]) => {
+    const datas = dato;
+    const result = [];
+    numberResult = numberResult > datas.length ? datas.length : numberResult;
     for (let i = 0; i < numberResult; i++) {
-      result.push(datas[i])
-    } 
-    return result
-  }
+      result.push(datas[i]);
+    }
+    return result;
+  };
   if (find == null) {
     React.useEffect(() => {
-      axios.get('https://swapi.py4e.com/api/films').then((response) => {
-        const result=filterResult(response.data.results)
-        setPeliculas(result);
-      }).catch((error) => {
-        console.log(error);
-      });
+      axios
+        .get('https://swapi.py4e.com/api/films')
+        .then((response) => {
+          const result = filterResult(response.data.results);
+          setPeliculas(result);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }, [numberResult]);
   } else {
     React.useEffect(() => {
-      axios.get('https://swapi.py4e.com/api/films/?search=' + find).then((response) => {
-        const result=filterResult(response.data.results)
-        setPeliculas(result);
-        console.log(response);
-      });
+      axios
+        .get('https://swapi.py4e.com/api/films/?search=' + find)
+        .then((response) => {
+          const result = filterResult(response.data.results);
+          setPeliculas(result);
+          console.log(response);
+        });
     }, [find]);
   }
 
@@ -46,19 +56,26 @@ export function StarWarHome({ keys="darkColors", numberResult = 3, isButton = tr
       {peliculas &&
         peliculas.map((text) => (
           <View>
-            <Card >
+            <Card>
               <Card.Title>{text.title}</Card.Title>
               <Text style={styles.texto}>Director: {text.director}</Text>
               <Text>Fecha de Lanzamiento: {text.release_date}</Text>
-              {isButton ? <Button  onPress={() =>
-                  navigation.navigate('Peliculas', { url: text.url,key:keys })
-                }>
-                Mas Informacion
-              </Button> : null}
+              {isButton ? (
+                <Button
+                  onPress={() =>
+                    navigation.navigate('Peliculas', {
+                      url: text.url,
+                      key: keys,
+                    })
+                  }
+                >
+                  Mas Informacion
+                </Button>
+              ) : null}
             </Card>
           </View>
         ))}
-      <Button onPress={()=>navigation.navigate('Personajes')}>
+      <Button onPress={() => navigation.navigate('Personajes')}>
         Mira todos los actores de Star War
       </Button>
     </ScrollView>
@@ -81,10 +98,9 @@ const styles = StyleSheet.create({
     height: 60,
     marginVertical: 20,
   },
-  texto:{
+  texto: {
     color: 'black',
     fontSize: 10,
     fontWeight: 'bold',
-
-  }
+  },
 });
