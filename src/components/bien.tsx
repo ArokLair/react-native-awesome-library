@@ -46,7 +46,7 @@ export function Bien({
 
   useEffect(() => {
     axios
-      .get(`https://hablaplus-backend-production.up.railway.app/bien`)
+      .get(`https://squid-app-jci62.ondigitalocean.app/`)
       .then((response) => response.data)
       .then((data) => setBienes(data));
   }, [listaBien]);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URLAPI = 'https://hablaplus-backend-production.up.railway.app';
+const URLAPI = 'https://squid-app-jci62.ondigitalocean.app';
 interface Bien {
   id?: Number;
   cod: Number;
